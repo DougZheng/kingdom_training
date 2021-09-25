@@ -1,0 +1,25 @@
+#!/bin/bash
+
+dt_s='2021-06-15'
+dt_t='2021-07-01' # 左闭右开
+dt_arr=$(
+while [[ $dt_s < $dt_t ]]
+do
+  echo $dt_s
+  dt_s=`date -d "+1 day $dt_s" +%F`
+done)
+
+APP=gmall
+hive=$HIVE_HOME/bin/hive
+
+sql="use gmall;"
+for do_date in ${dt_arr[@]}
+do
+  echo ============ "$do_date" ============
+  # 此处加入sql
+  sql=$sql"
+
+  "
+done
+
+$hive -e "$sql"
